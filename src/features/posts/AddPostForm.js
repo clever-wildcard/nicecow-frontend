@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { nanoid } from '@reduxjs/toolkit'
 import { postAdded } from './postsSlice'
 
 export const AddPostForm = () => {
@@ -13,14 +12,7 @@ export const AddPostForm = () => {
 
     const onSavePostClicked = () => {
         if (title && content) {
-            dispatch(
-                postAdded({
-                    id: nanoid(),
-                    title,
-                    content
-                })
-            )
-
+            dispatch(postAdded(title, content))
             setTitle('')
             setContent('')
         }
@@ -35,6 +27,7 @@ export const AddPostForm = () => {
                 <input type="text"
                        id="postTitle"
                        name="postTitle"
+                       placeholder="What's on your mind?"
                        value={title}
                        onChange={onTitleChanged}
                        />
