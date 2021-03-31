@@ -6,7 +6,7 @@ import { ReactionButtons } from './ReactionButtons'
 import { TimeAgo } from './TimeAgo'
 import { selectAllPosts, fetchPosts } from './postsSlice'
 
-const PostExcerpt = ({ post }) => {
+let PostExcerpt = ({ post }) => {
     return (
         <article className="post-excerpt" key={post.id}>
             <h3>{post.title}</h3>
@@ -23,6 +23,7 @@ const PostExcerpt = ({ post }) => {
     )
 }
 
+PostExcerpt = React.memo(PostExcerpt)
 
 export const PostsList = () => {
     const dispatch = useDispatch()
@@ -52,23 +53,6 @@ export const PostsList = () => {
     } else if (postStatus === 'error') {
         content = <div>{error}</div>
     }
-
-    // const orderedPosts = posts.slice().sort((a, b) => b.date.localeCompare(a.date))
-
-    // const renderedPosts = orderedPosts.map(post => (
-    //     <article className="post-excerpt" key={post.id}>
-    //         <h3>{post.title}</h3>
-    //         <div>
-    //             <PostAuthor userId={post.user} />
-    //             <TimeAgo timestamp={post.date} />
-    //         </div>
-    //         <p className="post-content">{post.content.substring(0, 100)}</p>
-    //         <ReactionButtons post={post} />
-    //         <Link to={`/posts/${post.id}`} className="button muted-button">
-    //             View Post
-    //         </Link>
-    //     </article>
-    // ))
 
     return (
         <section className="posts-list">
