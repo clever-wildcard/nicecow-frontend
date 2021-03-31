@@ -23,6 +23,3 @@ export const {
     selectAll: selectAllUsers,
     selectById: selectUserById
 } = usersAdapter.getSelectors(state => state.users)
-// export const selectAllUsers = state => state.users
-// export const selectUserById = (state, userId) =>
-//     state.users.find(user => user.id === userId)
