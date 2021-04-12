@@ -6,7 +6,7 @@ import NavBar from './NavBar'
 import SocialPosts from './SocialPosts'
 import SocialPostEdit from "./SocialPostEdit";
 // import AddPostForm from "./AddPostForm";
-import SocialPostCreate from 'SocialPostCreate'
+import SocialPostCreate from './SocialPostCreate'
 
 const api = new Api()
 

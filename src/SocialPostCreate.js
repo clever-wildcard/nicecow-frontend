@@ -15,7 +15,17 @@ class SocialPostCreate extends Component {
             item: this.emptyItem,
             errorMessage: null,
         }
+        this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+    }
+
+    handleChange(event) {
+        const target = event.target
+        const value = target.value
+        const name = target.name
+        let item = {...this.state.item}
+        item[name] = value
+        this.setState({item})
     }
 
     async handleSubmit(event) {
@@ -29,7 +39,7 @@ class SocialPostCreate extends Component {
         }
         else {
             this.setState({errorMessage: null})
-            this.props.history.push('/posts')
+            // this.props.history.push('/posts')
         }
     }
 
@@ -44,15 +54,15 @@ class SocialPostCreate extends Component {
                         <div className="row">
                             <FormGroup>
                                 <Label for="userId">UserId</Label>
-                                <Input type="text" name="userId" id="userId" value={item.userId} autoComplete="userId"/>
+                                <Input type="text" name="userId" id="userId" value={item.userId || ' '} onChange={this.handleChange} autoComplete="userId"/>
                             </FormGroup>
                             <FormGroup>
                                 <Label for="postTitle">Post Title</Label>
-                                <Input type="text" name="postTitle" id="postTitle" value={item.postTitle || ''} autoComplete="postTitle"/>
+                                <Input type="text" name="postTitle" id="postTitle" value={item.postTitle || ''} onChange={this.handleChange} autoComplete="postTitle"/>
                             </FormGroup>
                             <FormGroup>
                                 <Label for="postContent">Post Content</Label>
-                                <Input type="text" name="postContent" id="postContent" value={item.postContent || ''} autoComplete="postContent"/>
+                                <Input type="text" name="postContent" id="postContent" value={item.postContent || ''} onChange={this.handleChange} autoComplete="postContent"/>
                             </FormGroup>
                         </div>
                         <FormGroup>
