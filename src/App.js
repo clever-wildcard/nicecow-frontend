@@ -3,13 +3,17 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import './App.css';
 import Api from './Api'
 import NavBar from './NavBar'
+import SocialPosts from './SocialPosts'
+import SocialPostEdit from "./SocialPostEdit";
+// import AddPostForm from "./AddPostForm";
+import SocialPostCreate from 'SocialPostCreate'
 
 const api = new Api()
 
 
 
 function App(props) {
-    let subsetOfProps = props.userId
+    // let subsetOfProps = props.userId
 
     return (
         <Router>
@@ -17,22 +21,33 @@ function App(props) {
             <div className="App">
                 <Switch>
                     <Route
-                        exact
+                        exact={true}
                         path="/"
+                        // render={(props) => <SocialPostEdit {...props} api={api}/>}
                         render={() => (
-                            <React.Fragment key={props}>
-                                <AddPostForm api={api}/>
+
+                            <React.Fragment>
+                            {/*// <React.Fragment key={props}>*/}
+                                {/*<AddPostForm api={api}/>*/}
+                                {/*<SocialPostCreate api={api}/>*/}
+                                {/*<SocialPostEdit api={api}/>*/}
+                                <SocialPostCreate api={api}/>
                                 <SocialPosts api={api}/>
                             </React.Fragment>
-                        )}
+                           )}
                     />
                     <Route
-                        exact
-                        path="/:userId"
+                        path="/:postId"
+                        // render={(props) => <SocialPosts {...props} api={api}/>}
                         render={() => (
-                            <React.Fragment key={subsetOfProps}>
-                                <AddPostForm api={api}/>
-                                <SocialPosts api={api}/>
+                            <React.Fragment>
+
+                            {/*// <React.Fragment key={subsetOfProps}>*/}
+                                {/*<AddPostForm api={api}/>*/}
+                                {/*<SocialPostCreate api={api}/>*/}
+                                <SocialPostEdit api={api}/>
+
+                                {/*<SocialPosts api={api}/>*/}
                             </React.Fragment>
                         )}
                         />

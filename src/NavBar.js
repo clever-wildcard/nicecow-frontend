@@ -23,7 +23,7 @@ class NavBar extends Component {
                     <NavItem>
                         {/*<NavLink href="/:id">Me</NavLink>*/}
                         {/*<NavLink tag={Link}>Me</NavLink>*/}
-                        <NavbarBrand tag={Link} to="/:id">Me</NavbarBrand>
+                        <NavbarBrand tag={Link} to="/:userId">Me</NavbarBrand>
                     </NavItem>
                 </Nav>
             </Collapse>
