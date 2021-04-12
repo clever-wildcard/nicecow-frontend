@@ -6,7 +6,7 @@ const SocialPost = (props) => (
     <div>
         <div>
             <p>User id: {props.userId}</p>
-            <p>{props.postTitle}</p>
+            <h1>{props.postTitle}</h1>
             <p>{props.postContent}</p>
             <p>Post Id: {props.postId}</p>
         </div>
@@ -59,6 +59,16 @@ class SocialPosts extends Component {
         }
     }
 
+    async edit(post) {
+        let response = await this.props.api.edit(post)
+        if (!response.ok) {
+            this.setState({errorMessage: `${response.statusText}`})
+        } else {
+            let refreshedSocialPosts = [...this.state.socialPosts].filter(i => i.postId !== post.postId)
+            this.setState({socialPosts: refreshedSocialPosts, errorMessage: null})
+        }
+    }
+
     render() {
         const {socialPosts, isLoading, errorMessage} = this.state
 
@@ -69,9 +79,6 @@ class SocialPosts extends Component {
         return (
             <div>
                 {this.props.navbar}
-                <div>
-                    <Button color="success" tag={Link} to="/new">Add New</Button>
-                </div>
                 {errorMessage ?
                 <div className="d-flex flex-row justify-content-center">
                     <Alert color="warning" style={{flex:1, maxWidth:'80%'}}>

@@ -38,7 +38,7 @@ class Api {
         })
     }
 
-    async update(item) {
+    async edit(item) {
         return await fetch(`${this.BASE_URL}/${item.postId}`, {
             method: 'PUT',
             headers: this.createHeaders(),
